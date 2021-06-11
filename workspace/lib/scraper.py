@@ -1,6 +1,5 @@
 import backtrader as bt
 import ccxt
-import datetime
 
 
 def __noop(*args):
@@ -27,7 +26,7 @@ def __retry_fetch_OHLCV(exchange, pair, timeframe, since, max_retries=3):
     while OHLCV is None:
         try:
             num_retries += 1
-            OHLCV = exchange.fetchOHLCV(pair, timeframe, since, 700)
+            OHLCV = exchange.fetchOHLCV(pair, timeframe, since, 1000)
             return OHLCV
         except Exception as e:
             if num_retries > max_retries:
